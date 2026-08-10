@@ -30,11 +30,12 @@ void main() {
 
   /*
   Perbandingan dengan Sprint 3:
-  Pada Sprint 3, data nama dan harga barang disimpan secara terpisah
-  menggunakan dua List, yaitu List<String> namaBarang dan List harga.
-  Pada sprint sekarang, data nama, harga, dan stok digabung menjadi
-  satu objek Barang. Kemudian beberapa objek Barang disimpan dalam
-  satu List<Barang>, sehingga data menjadi lebih terorganisir,
-  saling berhubungan, dan lebih mudah untuk digunakan.
+  Pada Sprint 3, data nama dan harga barang diletakkan
+  pada dua List yang berbeda, yaitu List<String> namaBarang
+  dan List harga. Pada program sekarang, nama, harga, dan stok
+  dijadikan satu dalam objek Barang dan kemudian disimpan
+  ke dalam List<Barang>. Dengan cara ini, data barang menjadi
+  lebih teratur, tetap saling berhubungan, dan lebih mudah
+  dikelola jika jumlah barang semakin banyak.
   */
 }
