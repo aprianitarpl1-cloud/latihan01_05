@@ -54,15 +54,50 @@ class BarangPromo extends Barang {
     return harga - (harga * persenDiskon / 100);
   }
 
-  void tampilkanPromo() {
+  @override
+  void tampilkan() {
     print("========================");
     print("KARTU BARANG PROMO");
+    print("Label : PROMO");
     print("Nama  : $nama");
-    print("Harga Normal: Rp${harga.toStringAsFixed(0)}");
+    print("Harga Coret : Rp${harga.toStringAsFixed(0)}");
     print("Stok  : $stok");
     print("Diskon : $persenDiskon%");
     print("Harga Promo : Rp${hargaPromo().toStringAsFixed(0)}");
     print("Nilai Stok : Rp${nilaiStok().toStringAsFixed(0)}");
+    print("========================");
+  }
+}
+
+class BarangGrosir extends Barang {
+  int minimalBeli;
+  double diskonGrosir;
+
+  BarangGrosir(
+    String nama,
+    double harga,
+    int stok,
+    this.minimalBeli,
+    this.diskonGrosir,
+  ) : super(nama, harga, stok);
+
+  double hargaGrosir(int jumlah) {
+    if (jumlah >= minimalBeli) {
+      return harga - (harga * diskonGrosir / 100);
+    } else {
+      return harga;
+    }
+  }
+
+  @override
+  void tampilkan() {
+    print("========================");
+    print("KARTU BARANG GROSIR");
+    print("Nama : $nama");
+    print("Harga : Rp${harga.toStringAsFixed(0)}");
+    print("Stok : $stok");
+    print("Minimal Beli : $minimalBeli");
+    print("Diskon Grosir : $diskonGrosir%");
     print("========================");
   }
 }
@@ -76,6 +111,20 @@ class Pembeli {
   void tampilkan() {
     print("Nama Pembeli : $nama");
     print("Status Anggota : ${statusAnggota ? "Anggota" : "Umum"}");
+  }
+}
+
+// FUNGSI PROSES BELI
+void prosesBeli(String inputJumlah) {
+  try {
+    int jumlah = int.parse(inputJumlah);
+
+    print("Jumlah pembelian: $jumlah");
+    print("Penjualan berhasil diproses.");
+  } catch (e) {
+    print("Input tidak valid. Silahkan masukkan jumlah berupa angka.");
+  } finally {
+    print("Transaksi dicatat di log.");
   }
 }
 
@@ -104,8 +153,16 @@ void main() {
   }
 
   print("Stok sekarang: ${barang1.stok}");
-}
 
-// Melindungi stok penting bagi integritas data koperasi karena memastikan jumlah
-// barang yang tercatat sesuai dengan stok sebenarnya. Dengan begitu, koperasi
-// tidak menjual barang melebihi stok dan data transaksi tetap akurat serta terpercaya.
+  print("\n=== BARANG PROMO ===");
+
+  BarangPromo barangPromo =
+      BarangPromo("Buku Gambar", 10000, 10, 20);
+
+  barangPromo.tampilkan();
+
+  print("\n=== PROSES BELI ===");
+
+  prosesBeli("5");
+  prosesBeli("dua");
+}
